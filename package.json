@@ -1,0 +1,21 @@
+{
+  "name": "brown-university-xmodule-utils",
+  "version": "0.1.0",
+  "description": "",
+  "main": "modo.js",
+  "scripts": {
+    "lint": "eslint .",
+    "format-check": "prettier -l *.js .eslintrc package.json",
+    "format": "prettier --write *.js .eslintrc package.json",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.0.0",
+    "eslint-config-brown": "git+https://bitbucket.brown.edu/scm/node/eslint-config-brown.git#semver:^0.14",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2"
+  }
+}
