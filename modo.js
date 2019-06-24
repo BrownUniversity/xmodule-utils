@@ -25,14 +25,22 @@ function ButtonContainer({ buttons }) {
   };
 }
 
-function LinkButton({ title, external }) {
+function link({ external, authority }) {
+  if (authority) {
+    return { authority: { type: "default" } };
+  }
+
+  return {
+    external,
+    accessoryIcon: "drilldown"
+  };
+}
+
+function LinkButton({ title, external, authority = false }) {
   return {
     elementType: "linkButton",
     title,
-    link: {
-      external,
-      accessoryIcon: "drilldown"
-    },
+    link: link({ external, authority }),
     accessoryIconPosition: "right"
   };
 }

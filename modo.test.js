@@ -111,11 +111,20 @@ describe("LinkButton", () => {
     expect(LinkButton({ title: "Title", external: "" }).title).toBe("Title");
   });
 
-  it("includes provided url", () => {
-    expect(
-      LinkButton({ title: "Title", external: "https://brown.edu" }).link
-        .external
-    ).toBe("https://brown.edu");
+  describe("link", () => {
+    it("includes external link if provided", () => {
+      expect(
+        LinkButton({ title: "", external: "https://brown.edu" }).link.external
+      ).toBe("https://brown.edu");
+    });
+
+    it("includes authority link if requested", () => {
+      expect(LinkButton({ title: "", authority: true }).link).toEqual({
+        authority: {
+          type: "default"
+        }
+      });
+    });
   });
 });
 
