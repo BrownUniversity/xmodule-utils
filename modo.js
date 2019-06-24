@@ -37,9 +37,18 @@ function LinkButton({ title, external }) {
   };
 }
 
+function Detail({ subtitle, children = [] }) {
+  return {
+    elementType: "detail",
+    subtitle,
+    content: children
+  };
+}
+
 module.exports = {
   Root,
   Table,
   LinkButton,
-  ButtonContainer
+  ButtonContainer,
+  Detail
 };
