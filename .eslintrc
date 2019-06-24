@@ -1,0 +1,3 @@
+{
+  "extends": ["brown", "brown/prettier", "brown/jest"]
+}
