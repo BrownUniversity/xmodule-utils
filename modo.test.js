@@ -1,4 +1,4 @@
-const { Root, Table, ButtonContainer, LinkButton } = require("./modo");
+const { Root, Table, ButtonContainer, LinkButton, Detail } = require("./modo");
 
 describe("Root", () => {
   it("includes default version (1) in metadata", () => {
@@ -116,5 +116,25 @@ describe("LinkButton", () => {
       LinkButton({ title: "Title", external: "https://brown.edu" }).link
         .external
     ).toBe("https://brown.edu");
+  });
+});
+
+describe("Detail", () => {
+  it("includes detail element type", () => {
+    expect(Detail({ subtitle: "" }).elementType).toBe("detail");
+  });
+
+  it("includes provided subtitle", () => {
+    expect(Detail({ subtitle: "Test subtitle" }).subtitle).toBe(
+      "Test subtitle"
+    );
+  });
+
+  it("includes provided children in content array", () => {
+    expect(Detail({ children: ["child 1", "child 2"] })).toEqual(
+      expect.objectContaining({
+        content: ["child 1", "child 2"]
+      })
+    );
   });
 });
