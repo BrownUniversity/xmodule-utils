@@ -53,10 +53,19 @@ function Detail({ subtitle, children = [] }) {
   };
 }
 
+function HTML({ content }) {
+  return {
+    elementType: "html",
+    inset: false,
+    html: content
+  };
+}
+
 module.exports = {
   Root,
   Table,
   LinkButton,
   ButtonContainer,
-  Detail
+  Detail,
+  HTML
 };

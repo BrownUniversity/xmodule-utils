@@ -1,4 +1,11 @@
-const { Root, Table, ButtonContainer, LinkButton, Detail } = require("./modo");
+const {
+  Root,
+  Table,
+  ButtonContainer,
+  LinkButton,
+  Detail,
+  HTML
+} = require("./modo");
 
 describe("Root", () => {
   it("includes default version (1) in metadata", () => {
@@ -144,6 +151,22 @@ describe("Detail", () => {
       expect.objectContaining({
         content: ["child 1", "child 2"]
       })
+    );
+  });
+});
+
+describe("HTML", () => {
+  it("includes html element type", () => {
+    expect(HTML({ content: "" }).elementType).toBe("html");
+  });
+
+  it("sets inset to false", () => {
+    expect(HTML({ content: "" }).inset).toBe(false);
+  });
+
+  it("includes provided content as html property", () => {
+    expect(HTML({ content: "<span>THIS HERE BE CONTENT</span>" }).html).toBe(
+      "<span>THIS HERE BE CONTENT</span>"
     );
   });
 });
