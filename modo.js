@@ -53,6 +53,15 @@ function Detail({ subtitle, children = [] }) {
   };
 }
 
+function List({ heading, items = [], grouped = true }) {
+  return {
+    elementType: "list",
+    grouped,
+    heading,
+    items
+  };
+}
+
 function HTML({ content }) {
   return {
     elementType: "html",
@@ -67,5 +76,6 @@ module.exports = {
   LinkButton,
   ButtonContainer,
   Detail,
+  List,
   HTML
 };
