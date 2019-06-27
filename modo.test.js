@@ -4,6 +4,7 @@ const {
   ButtonContainer,
   LinkButton,
   Detail,
+  List,
   HTML
 } = require("./modo");
 
@@ -150,6 +151,24 @@ describe("Detail", () => {
     expect(Detail({ children: ["child 1", "child 2"] })).toEqual(
       expect.objectContaining({
         content: ["child 1", "child 2"]
+      })
+    );
+  });
+});
+
+describe("List", () => {
+  it("includes list element type", () => {
+    expect(List({ heading: "" }).elementType).toBe("list");
+  });
+
+  it("includes provided heading", () => {
+    expect(List({ heading: "Test heading" }).heading).toBe("Test heading");
+  });
+
+  it("includes provided items in items array", () => {
+    expect(List({ items: ["item 1", "item 2"] })).toEqual(
+      expect.objectContaining({
+        items: ["item 1", "item 2"]
       })
     );
   });
