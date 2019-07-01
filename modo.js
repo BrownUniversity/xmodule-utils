@@ -62,6 +62,16 @@ function List({ heading, items = [], grouped = true }) {
   };
 }
 
+function ListItem({ label, description, url }) {
+  return {
+    label,
+    description,
+    link: {
+      external: url
+    }
+  };
+}
+
 function HTML({ content }) {
   return {
     elementType: "html",
@@ -77,5 +87,6 @@ module.exports = {
   ButtonContainer,
   Detail,
   List,
+  ListItem,
   HTML
 };

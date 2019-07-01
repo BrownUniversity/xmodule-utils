@@ -5,6 +5,7 @@ const {
   LinkButton,
   Detail,
   List,
+  ListItem,
   HTML
 } = require("./modo");
 
@@ -170,6 +171,24 @@ describe("List", () => {
       expect.objectContaining({
         items: ["item 1", "item 2"]
       })
+    );
+  });
+});
+
+describe("ListItem", () => {
+  it("includes provided label", () => {
+    expect(ListItem({ label: "Test Label" }).label).toBe("Test Label");
+  });
+
+  it("includes provided description", () => {
+    expect(ListItem({ description: "Test description" }).description).toBe(
+      "Test description"
+    );
+  });
+
+  it("includes provided url", () => {
+    expect(ListItem({ url: "https://brown.edu" }).link).toEqual(
+      expect.objectContaining({ external: "https://brown.edu" })
     );
   });
 });
