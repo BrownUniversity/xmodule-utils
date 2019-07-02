@@ -25,22 +25,32 @@ function ButtonContainer({ buttons }) {
   };
 }
 
-function link({ external, authority }) {
-  if (authority) {
-    return { authority: { type: "default" } };
-  }
+function AuthorityLink() {
+  return { authority: { type: "default" } };
+}
 
+function ExternalLink({ external }) {
   return {
     external,
     accessoryIcon: "drilldown"
   };
 }
 
-function LinkButton({ title, external, authority = false }) {
+function ModuleLink({ id, page, queryParameters }) {
+  return {
+    module: {
+      id,
+      page,
+      queryParameters
+    }
+  };
+}
+
+function LinkButton({ title, link }) {
   return {
     elementType: "linkButton",
     title,
-    link: link({ external, authority }),
+    link,
     accessoryIconPosition: "right"
   };
 }
@@ -88,5 +98,8 @@ module.exports = {
   Detail,
   List,
   ListItem,
-  HTML
+  HTML,
+  AuthorityLink,
+  ExternalLink,
+  ModuleLink
 };

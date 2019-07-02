@@ -6,7 +6,10 @@ const {
   Detail,
   List,
   ListItem,
-  HTML
+  HTML,
+  AuthorityLink,
+  ExternalLink,
+  ModuleLink
 } = require("./modo");
 
 describe("Root", () => {
@@ -91,7 +94,7 @@ describe("ButtonContainer", () => {
         buttons: [
           LinkButton({
             title: "",
-            external: ""
+            link: ExternalLink({ external: "" })
           })
         ]
       }).buttons
@@ -111,28 +114,32 @@ describe("ButtonContainer", () => {
 
 describe("LinkButton", () => {
   it("includes linkButton element type", () => {
-    expect(LinkButton({ title: "", external: "" }).elementType).toBe(
-      "linkButton"
-    );
+    expect(
+      LinkButton({ title: "", link: ExternalLink({ external: "" }) })
+        .elementType
+    ).toBe("linkButton");
   });
 
   it("includes provided title", () => {
-    expect(LinkButton({ title: "Title", external: "" }).title).toBe("Title");
+    expect(
+      LinkButton({ title: "Title", link: ExternalLink({ external: "" }) }).title
+    ).toBe("Title");
   });
 
-  describe("link", () => {
-    it("includes external link if provided", () => {
-      expect(
-        LinkButton({ title: "", external: "https://brown.edu" }).link.external
-      ).toBe("https://brown.edu");
-    });
+  it("includes external link if provided", () => {
+    expect(
+      LinkButton({
+        title: "",
+        link: ExternalLink({ external: "https://brown.edu" })
+      }).link.external
+    ).toBe("https://brown.edu");
+  });
 
-    it("includes authority link if requested", () => {
-      expect(LinkButton({ title: "", authority: true }).link).toEqual({
-        authority: {
-          type: "default"
-        }
-      });
+  it("includes authority link if requested", () => {
+    expect(LinkButton({ title: "", link: AuthorityLink() }).link).toEqual({
+      authority: {
+        type: "default"
+      }
     });
   });
 });
@@ -205,6 +212,43 @@ describe("HTML", () => {
   it("includes provided content as html property", () => {
     expect(HTML({ content: "<span>THIS HERE BE CONTENT</span>" }).html).toBe(
       "<span>THIS HERE BE CONTENT</span>"
+    );
+  });
+});
+
+describe("AuthorityLink", () => {
+  it("includes default type", () => {
+    expect(AuthorityLink().authority.type).toBe("default");
+  });
+});
+
+describe("ExternalLink", () => {
+  it("includes provided url", () => {
+    expect(ExternalLink({ external: "https://brown.edu" }).external).toBe(
+      "https://brown.edu"
+    );
+  });
+});
+
+describe("ModuleLink", () => {
+  const module = {
+    id: "link id",
+    page: "page name",
+    queryParameters: { search: "Search", filter: "filter string" }
+  };
+
+  it("includes provided id", () => {
+    expect(ModuleLink(module).module.id).toBe("link id");
+  });
+  it("includes provided page name", () => {
+    expect(ModuleLink(module).module.page).toBe("page name");
+  });
+  it("includes provided search name", () => {
+    expect(ModuleLink(module).module.queryParameters.search).toBe("Search");
+  });
+  it("includes provided filter string", () => {
+    expect(ModuleLink(module).module.queryParameters.filter).toBe(
+      "filter string"
     );
   });
 });
