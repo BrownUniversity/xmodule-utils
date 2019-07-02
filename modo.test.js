@@ -7,9 +7,9 @@ const {
   List,
   ListItem,
   HTML,
-    AuthorityLink,
-    ExternalLink,
-    ModuleLink
+  AuthorityLink,
+  ExternalLink,
+  ModuleLink
 } = require("./modo");
 
 describe("Root", () => {
@@ -220,23 +220,31 @@ describe("AuthorityLink", () => {
 
 describe("ExternalLink", () => {
   it("includes provided url", () => {
-    expect(ExternalLink({external: "https://brown.edu"}).external).toBe("https://brown.edu");
-  })
+    expect(ExternalLink({ external: "https://brown.edu" }).external).toBe(
+      "https://brown.edu"
+    );
+  });
 });
 
 describe("ModuleLink", () => {
-  const module = {id: "link id", page: "page name", queryParameters: {search: "Search", filter: "filter string"}};
+  const module = {
+    id: "link id",
+    page: "page name",
+    queryParameters: { search: "Search", filter: "filter string" }
+  };
 
   it("includes provided id", () => {
     expect(ModuleLink(module).module.id).toBe("link id");
   });
   it("includes provided page name", () => {
     expect(ModuleLink(module).module.page).toBe("page name");
-  })
+  });
   it("includes provided search name", () => {
     expect(ModuleLink(module).module.queryParameters.search).toBe("Search");
-  })
+  });
   it("includes provided filter string", () => {
-    expect(ModuleLink(module).module.queryParameters.filter).toBe("filter string");
-  })
+    expect(ModuleLink(module).module.queryParameters.filter).toBe(
+      "filter string"
+    );
+  });
 });

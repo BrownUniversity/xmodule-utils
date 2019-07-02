@@ -46,7 +46,6 @@ function ModuleLink({ id, page, queryParameters }) {
   };
 }
 
-
 /**
  *
  * @param external
@@ -61,11 +60,10 @@ function link({ external, authority, module }) {
 
   if (module) {
     const { id, page, queryParameters } = module;
-    return ModuleLink( {id, page, queryParameters} );
+    return ModuleLink({ id, page, queryParameters });
   }
 
   return ExternalLink({ external });
-
 }
 
 function LinkButton({ title, external, authority = false }) {
