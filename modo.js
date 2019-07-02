@@ -50,7 +50,7 @@ function LinkButton({ title, link }) {
   return {
     elementType: "linkButton",
     title,
-    link: link,
+    link,
     accessoryIconPosition: "right"
   };
 }
