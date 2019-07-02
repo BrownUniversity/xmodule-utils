@@ -94,7 +94,7 @@ describe("ButtonContainer", () => {
         buttons: [
           LinkButton({
             title: "",
-            external: ""
+            link: ExternalLink({ external: "" })
           })
         ]
       }).buttons
@@ -114,24 +114,30 @@ describe("ButtonContainer", () => {
 
 describe("LinkButton", () => {
   it("includes linkButton element type", () => {
-    expect(LinkButton({ title: "", external: "" }).elementType).toBe(
-      "linkButton"
-    );
+    expect(
+      LinkButton({ title: "", link: ExternalLink({ external: "" }) })
+        .elementType
+    ).toBe("linkButton");
   });
 
   it("includes provided title", () => {
-    expect(LinkButton({ title: "Title", external: "" }).title).toBe("Title");
+    expect(
+      LinkButton({ title: "Title", link: ExternalLink({ external: "" }) }).title
+    ).toBe("Title");
   });
 
   describe("link", () => {
     it("includes external link if provided", () => {
       expect(
-        LinkButton({ title: "", external: "https://brown.edu" }).link.external
+        LinkButton({
+          title: "",
+          link: ExternalLink({ external: "https://brown.edu" })
+        }).link.external
       ).toBe("https://brown.edu");
     });
 
     it("includes authority link if requested", () => {
-      expect(LinkButton({ title: "", authority: true }).link).toEqual({
+      expect(LinkButton({ title: "", link: AuthorityLink() }).link).toEqual({
         authority: {
           type: "default"
         }

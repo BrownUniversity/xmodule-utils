@@ -46,31 +46,11 @@ function ModuleLink({ id, page, queryParameters }) {
   };
 }
 
-/**
- *
- * @param external
- * @param authority
- * @returns {{authority: {type: string}}|{external: *, accessoryIcon: string}}
- * @deprecated
- */
-function link({ external, authority, module }) {
-  if (authority) {
-    return AuthorityLink();
-  }
-
-  if (module) {
-    const { id, page, queryParameters } = module;
-    return ModuleLink({ id, page, queryParameters });
-  }
-
-  return ExternalLink({ external });
-}
-
-function LinkButton({ title, external, authority = false }) {
+function LinkButton({ title, link }) {
   return {
     elementType: "linkButton",
     title,
-    link: link({ external, authority }),
+    link: link,
     accessoryIconPosition: "right"
   };
 }
