@@ -25,15 +25,47 @@ function ButtonContainer({ buttons }) {
   };
 }
 
-function link({ external, authority }) {
-  if (authority) {
-    return { authority: { type: "default" } };
-  }
+function AuthorityLink() {
+  return { authority: { type: "default" } };
+}
 
+function ExternalLink({ external }) {
   return {
     external,
     accessoryIcon: "drilldown"
   };
+}
+
+function ModuleLink({ id, page, queryParameters }) {
+  return {
+    module: {
+      id,
+      page,
+      queryParameters
+    }
+  };
+}
+
+
+/**
+ *
+ * @param external
+ * @param authority
+ * @returns {{authority: {type: string}}|{external: *, accessoryIcon: string}}
+ * @deprecated
+ */
+function link({ external, authority, module }) {
+  if (authority) {
+    return AuthorityLink();
+  }
+
+  if (module) {
+    const { id, page, queryParameters } = module;
+    return ModuleLink( {id, page, queryParameters} );
+  }
+
+  return ExternalLink({ external });
+
 }
 
 function LinkButton({ title, external, authority = false }) {
@@ -88,5 +120,8 @@ module.exports = {
   Detail,
   List,
   ListItem,
-  HTML
+  HTML,
+  AuthorityLink,
+  ExternalLink,
+  ModuleLink
 };
