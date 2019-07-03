@@ -90,6 +90,45 @@ function HTML({ content }) {
   };
 }
 
+function Form({ path, children, successTarget = null }) {
+  const events = successTarget
+    ? [
+        {
+          eventName: "success",
+          action: "show",
+          targetId: successTarget
+        }
+      ]
+    : [];
+
+  return {
+    elementType: "form",
+    relativePath: path,
+    postType: "background",
+    items: children,
+    events
+  };
+}
+
+function Checkbox({ name, label, checked = false }) {
+  return {
+    elementType: "input",
+    inputType: "checkbox",
+    name,
+    label,
+    checked
+  };
+}
+
+function FormButton({ text }) {
+  return {
+    elementType: "formButton",
+    title: text,
+    buttonType: "submit",
+    actionType: "constructive"
+  };
+}
+
 module.exports = {
   Root,
   Table,
@@ -99,6 +138,9 @@ module.exports = {
   List,
   ListItem,
   HTML,
+  Form,
+  Checkbox,
+  FormButton,
   AuthorityLink,
   ExternalLink,
   ModuleLink
