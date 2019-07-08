@@ -7,6 +7,9 @@ const {
   List,
   ListItem,
   HTML,
+  Form,
+  Checkbox,
+  FormButton,
   AuthorityLink,
   ExternalLink,
   ModuleLink
@@ -213,6 +216,86 @@ describe("HTML", () => {
     expect(HTML({ content: "<span>THIS HERE BE CONTENT</span>" }).html).toBe(
       "<span>THIS HERE BE CONTENT</span>"
     );
+  });
+});
+
+describe("Form", () => {
+  it("includes form element type", () => {
+    expect(Form({ path: "", children: [] }).elementType).toBe("form");
+  });
+
+  it("includes provided path", () => {
+    expect(Form({ path: "path/to/form", children: [] }).relativePath).toBe(
+      "path/to/form"
+    );
+  });
+
+  it("includes provided children in items array", () => {
+    expect(Form({ children: ["child 1", "child 2"], path: "" })).toEqual(
+      expect.objectContaining({
+        items: ["child 1", "child 2"]
+      })
+    );
+  });
+
+  it("includes empty events array by default", () => {
+    expect(Form({ path: "", children: [] }).events).toEqual([]);
+  });
+
+  it("includes success event with target if target id is provided", () => {
+    expect(
+      Form({ path: "", children: [], successTarget: "successId" }).events
+    ).toEqual([
+      {
+        eventName: "success",
+        action: "show",
+        targetId: "successId"
+      }
+    ]);
+  });
+});
+
+describe("Checkbox", () => {
+  it("includes input elementType", () => {
+    expect(Checkbox({ name: "", label: "" }).elementType).toBe("input");
+  });
+
+  it("includes provided name", () => {
+    expect(Checkbox({ name: "element-name", label: "" }).name).toBe(
+      "element-name"
+    );
+  });
+
+  it("includes provided label", () => {
+    expect(Checkbox({ label: "element-label", name: "" }).label).toBe(
+      "element-label"
+    );
+  });
+
+  it("includes provided checked state (with false default)", () => {
+    expect(Checkbox({ name: "", label: "" }).checked).toBe(false);
+    expect(Checkbox({ name: "", label: "", checked: false }).checked).toBe(
+      false
+    );
+    expect(Checkbox({ name: "", label: "", checked: true }).checked).toBe(true);
+  });
+});
+
+describe("FormButton", () => {
+  it("includes formButton elementType", () => {
+    expect(FormButton({ text: "" }).elementType).toBe("formButton");
+  });
+
+  it("includes submit buttonType", () => {
+    expect(FormButton({ text: "" }).buttonType).toBe("submit");
+  });
+
+  it("includes constructive actionType", () => {
+    expect(FormButton({ text: "" }).actionType).toBe("constructive");
+  });
+
+  it("includes provided text as title", () => {
+    expect(FormButton({ text: "Button Text" }).title).toBe("Button Text");
   });
 });
 
