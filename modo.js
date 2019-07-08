@@ -7,6 +7,25 @@ function Root({ children, version = "1" }) {
   };
 }
 
+function Container({ id, content, margins = "responsive", hidden = false }) {
+  return {
+    elementType: "container",
+    margins: {
+      value: margins
+    },
+    id,
+    content,
+    hidden
+  };
+}
+
+function Heading({ text }) {
+  return {
+    elementType: "heading",
+    title: text
+  };
+}
+
 function Table({ heading, headers, rows }) {
   return {
     elementType: "table",
@@ -131,6 +150,8 @@ function FormButton({ text }) {
 
 module.exports = {
   Root,
+  Container,
+  Heading,
   Table,
   LinkButton,
   ButtonContainer,

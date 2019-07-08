@@ -1,5 +1,7 @@
 const {
   Root,
+  Container,
+  Heading,
   Table,
   ButtonContainer,
   LinkButton,
@@ -32,6 +34,47 @@ describe("Root", () => {
         content: ["child 1", "child 2"]
       })
     );
+  });
+});
+
+describe("Container", () => {
+  it("includes container elementType", () => {
+    expect(Container({ id: "", content: [] }).elementType).toBe("container");
+  });
+
+  it("includes provided margin type (with responsive default)", () => {
+    expect(Container({ id: "", content: [] }).margins.value).toBe("responsive");
+    expect(
+      Container({ id: "", content: [], margins: "minimal" }).margins.value
+    ).toBe("minimal");
+  });
+
+  it("includes provided hidden state (with false default)", () => {
+    expect(Container({ id: "", content: [] }).hidden).toBe(false);
+    expect(Container({ id: "", content: [], hidden: false }).hidden).toBe(
+      false
+    );
+    expect(Container({ id: "", content: [], hidden: true }).hidden).toBe(true);
+  });
+
+  it("includes provided id", () => {
+    expect(Container({ id: "element-id", content: [] }).id).toBe("element-id");
+  });
+
+  it("includes provided content as content array", () => {
+    expect(
+      Container({ id: "", content: ["item 1", "item 2"] }).content
+    ).toEqual(["item 1", "item 2"]);
+  });
+});
+
+describe("Heading", () => {
+  it("includes heading elementType", () => {
+    expect(Heading({ text: "" }).elementType).toBe("heading");
+  });
+
+  it("includes provided text as title", () => {
+    expect(Heading({ text: "heading text" }).title).toBe("heading text");
   });
 });
 
