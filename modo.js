@@ -7,6 +7,25 @@ function Root({ children, version = "1" }) {
   };
 }
 
+function Container({ id, content, margins = "responsive", hidden = false }) {
+  return {
+    elementType: "container",
+    margins: {
+      value: margins
+    },
+    id,
+    content,
+    hidden
+  };
+}
+
+function Heading({ text }) {
+  return {
+    elementType: "heading",
+    title: text
+  };
+}
+
 function Table({ heading, headers, rows }) {
   return {
     elementType: "table",
@@ -25,22 +44,32 @@ function ButtonContainer({ buttons }) {
   };
 }
 
-function link({ external, authority }) {
-  if (authority) {
-    return { authority: { type: "default" } };
-  }
+function AuthorityLink() {
+  return { authority: { type: "default" } };
+}
 
+function ExternalLink({ external }) {
   return {
     external,
     accessoryIcon: "drilldown"
   };
 }
 
-function LinkButton({ title, external, authority = false }) {
+function ModuleLink({ id, page, queryParameters }) {
+  return {
+    module: {
+      id,
+      page,
+      queryParameters
+    }
+  };
+}
+
+function LinkButton({ title, link }) {
   return {
     elementType: "linkButton",
     title,
-    link: link({ external, authority }),
+    link,
     accessoryIconPosition: "right"
   };
 }
@@ -80,13 +109,60 @@ function HTML({ content }) {
   };
 }
 
+function Form({ path, children, successTarget = null }) {
+  const events = successTarget
+    ? [
+        {
+          eventName: "success",
+          action: "show",
+          targetId: successTarget
+        }
+      ]
+    : [];
+
+  return {
+    elementType: "form",
+    relativePath: path,
+    postType: "background",
+    items: children,
+    events
+  };
+}
+
+function Checkbox({ name, label, checked = false }) {
+  return {
+    elementType: "input",
+    inputType: "checkbox",
+    name,
+    label,
+    checked
+  };
+}
+
+function FormButton({ text }) {
+  return {
+    elementType: "formButton",
+    title: text,
+    buttonType: "submit",
+    actionType: "constructive"
+  };
+}
+
 module.exports = {
   Root,
+  Container,
+  Heading,
   Table,
   LinkButton,
   ButtonContainer,
   Detail,
   List,
   ListItem,
-  HTML
+  HTML,
+  Form,
+  Checkbox,
+  FormButton,
+  AuthorityLink,
+  ExternalLink,
+  ModuleLink
 };

@@ -1,12 +1,20 @@
 const {
   Root,
+  Container,
+  Heading,
   Table,
   ButtonContainer,
   LinkButton,
   Detail,
   List,
   ListItem,
-  HTML
+  HTML,
+  Form,
+  Checkbox,
+  FormButton,
+  AuthorityLink,
+  ExternalLink,
+  ModuleLink
 } = require("./modo");
 
 describe("Root", () => {
@@ -26,6 +34,47 @@ describe("Root", () => {
         content: ["child 1", "child 2"]
       })
     );
+  });
+});
+
+describe("Container", () => {
+  it("includes container elementType", () => {
+    expect(Container({ id: "", content: [] }).elementType).toBe("container");
+  });
+
+  it("includes provided margin type (with responsive default)", () => {
+    expect(Container({ id: "", content: [] }).margins.value).toBe("responsive");
+    expect(
+      Container({ id: "", content: [], margins: "minimal" }).margins.value
+    ).toBe("minimal");
+  });
+
+  it("includes provided hidden state (with false default)", () => {
+    expect(Container({ id: "", content: [] }).hidden).toBe(false);
+    expect(Container({ id: "", content: [], hidden: false }).hidden).toBe(
+      false
+    );
+    expect(Container({ id: "", content: [], hidden: true }).hidden).toBe(true);
+  });
+
+  it("includes provided id", () => {
+    expect(Container({ id: "element-id", content: [] }).id).toBe("element-id");
+  });
+
+  it("includes provided content as content array", () => {
+    expect(
+      Container({ id: "", content: ["item 1", "item 2"] }).content
+    ).toEqual(["item 1", "item 2"]);
+  });
+});
+
+describe("Heading", () => {
+  it("includes heading elementType", () => {
+    expect(Heading({ text: "" }).elementType).toBe("heading");
+  });
+
+  it("includes provided text as title", () => {
+    expect(Heading({ text: "heading text" }).title).toBe("heading text");
   });
 });
 
@@ -91,7 +140,7 @@ describe("ButtonContainer", () => {
         buttons: [
           LinkButton({
             title: "",
-            external: ""
+            link: ExternalLink({ external: "" })
           })
         ]
       }).buttons
@@ -111,28 +160,32 @@ describe("ButtonContainer", () => {
 
 describe("LinkButton", () => {
   it("includes linkButton element type", () => {
-    expect(LinkButton({ title: "", external: "" }).elementType).toBe(
-      "linkButton"
-    );
+    expect(
+      LinkButton({ title: "", link: ExternalLink({ external: "" }) })
+        .elementType
+    ).toBe("linkButton");
   });
 
   it("includes provided title", () => {
-    expect(LinkButton({ title: "Title", external: "" }).title).toBe("Title");
+    expect(
+      LinkButton({ title: "Title", link: ExternalLink({ external: "" }) }).title
+    ).toBe("Title");
   });
 
-  describe("link", () => {
-    it("includes external link if provided", () => {
-      expect(
-        LinkButton({ title: "", external: "https://brown.edu" }).link.external
-      ).toBe("https://brown.edu");
-    });
+  it("includes external link if provided", () => {
+    expect(
+      LinkButton({
+        title: "",
+        link: ExternalLink({ external: "https://brown.edu" })
+      }).link.external
+    ).toBe("https://brown.edu");
+  });
 
-    it("includes authority link if requested", () => {
-      expect(LinkButton({ title: "", authority: true }).link).toEqual({
-        authority: {
-          type: "default"
-        }
-      });
+  it("includes authority link if requested", () => {
+    expect(LinkButton({ title: "", link: AuthorityLink() }).link).toEqual({
+      authority: {
+        type: "default"
+      }
     });
   });
 });
@@ -205,6 +258,123 @@ describe("HTML", () => {
   it("includes provided content as html property", () => {
     expect(HTML({ content: "<span>THIS HERE BE CONTENT</span>" }).html).toBe(
       "<span>THIS HERE BE CONTENT</span>"
+    );
+  });
+});
+
+describe("Form", () => {
+  it("includes form element type", () => {
+    expect(Form({ path: "", children: [] }).elementType).toBe("form");
+  });
+
+  it("includes provided path", () => {
+    expect(Form({ path: "path/to/form", children: [] }).relativePath).toBe(
+      "path/to/form"
+    );
+  });
+
+  it("includes provided children in items array", () => {
+    expect(Form({ children: ["child 1", "child 2"], path: "" })).toEqual(
+      expect.objectContaining({
+        items: ["child 1", "child 2"]
+      })
+    );
+  });
+
+  it("includes empty events array by default", () => {
+    expect(Form({ path: "", children: [] }).events).toEqual([]);
+  });
+
+  it("includes success event with target if target id is provided", () => {
+    expect(
+      Form({ path: "", children: [], successTarget: "successId" }).events
+    ).toEqual([
+      {
+        eventName: "success",
+        action: "show",
+        targetId: "successId"
+      }
+    ]);
+  });
+});
+
+describe("Checkbox", () => {
+  it("includes input elementType", () => {
+    expect(Checkbox({ name: "", label: "" }).elementType).toBe("input");
+  });
+
+  it("includes provided name", () => {
+    expect(Checkbox({ name: "element-name", label: "" }).name).toBe(
+      "element-name"
+    );
+  });
+
+  it("includes provided label", () => {
+    expect(Checkbox({ label: "element-label", name: "" }).label).toBe(
+      "element-label"
+    );
+  });
+
+  it("includes provided checked state (with false default)", () => {
+    expect(Checkbox({ name: "", label: "" }).checked).toBe(false);
+    expect(Checkbox({ name: "", label: "", checked: false }).checked).toBe(
+      false
+    );
+    expect(Checkbox({ name: "", label: "", checked: true }).checked).toBe(true);
+  });
+});
+
+describe("FormButton", () => {
+  it("includes formButton elementType", () => {
+    expect(FormButton({ text: "" }).elementType).toBe("formButton");
+  });
+
+  it("includes submit buttonType", () => {
+    expect(FormButton({ text: "" }).buttonType).toBe("submit");
+  });
+
+  it("includes constructive actionType", () => {
+    expect(FormButton({ text: "" }).actionType).toBe("constructive");
+  });
+
+  it("includes provided text as title", () => {
+    expect(FormButton({ text: "Button Text" }).title).toBe("Button Text");
+  });
+});
+
+describe("AuthorityLink", () => {
+  it("includes default type", () => {
+    expect(AuthorityLink().authority.type).toBe("default");
+  });
+});
+
+describe("ExternalLink", () => {
+  it("includes provided url", () => {
+    expect(ExternalLink({ external: "https://brown.edu" }).external).toBe(
+      "https://brown.edu"
+    );
+  });
+});
+
+describe("ModuleLink", () => {
+  const module = {
+    id: "link id",
+    page: "page name",
+    queryParameters: { search: "Search", filter: "filter string" }
+  };
+
+  it("includes provided id", () => {
+    expect(ModuleLink(module).module.id).toBe("link id");
+  });
+  it("includes provided page name", () => {
+    expect(ModuleLink(module).module.page).toBe("page name");
+  });
+  it("includes provided search name", () => {
+    expect(ModuleLink(module).module.queryParameters.search).toBe("Search");
+  });
+  it("includes provided filter string", () => {
+    expect(ModuleLink(module).module.queryParameters.filter).toBe(
+      "filter string"
     );
   });
 });
