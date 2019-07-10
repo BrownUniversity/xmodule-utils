@@ -139,6 +139,17 @@ function Checkbox({ name, label, checked = false }) {
   };
 }
 
+function Select({ name, label, value = null, required = false }) {
+  return {
+    elementType: "input",
+    inputType: "select",
+    name,
+    label,
+    value,
+    required
+  };
+}
+
 function FormButton({ text }) {
   return {
     elementType: "formButton",
@@ -161,6 +172,7 @@ module.exports = {
   HTML,
   Form,
   Checkbox,
+  Select,
   FormButton,
   AuthorityLink,
   ExternalLink,

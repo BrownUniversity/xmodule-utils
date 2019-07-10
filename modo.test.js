@@ -11,6 +11,7 @@ const {
   HTML,
   Form,
   Checkbox,
+  Select,
   FormButton,
   AuthorityLink,
   ExternalLink,
@@ -321,6 +322,38 @@ describe("Checkbox", () => {
       false
     );
     expect(Checkbox({ name: "", label: "", checked: true }).checked).toBe(true);
+  });
+});
+
+describe("Select", () => {
+  it("includes input elementType", () => {
+    expect(Select({ name: "", label: "" }).elementType).toBe("input");
+  });
+
+  it("includes provided name", () => {
+    expect(Select({ name: "select-name", label: "" }).name).toBe("select-name");
+  });
+
+  it("includes provided label", () => {
+    expect(Select({ label: "select-label", name: "" }).label).toBe(
+      "select-label"
+    );
+  });
+
+  it("includes provided value (with null as default)", () => {
+    expect(Select({ name: "", label: "" }).value).toBe(null);
+    expect(Select({ name: "", label: "", value: null }).value).toBe(null);
+    expect(Select({ name: "", label: "", value: "selected-value" }).value).toBe(
+      "selected-value"
+    );
+  });
+
+  it("includes provided required state (with false as default)", () => {
+    expect(Select({ name: "", label: "" }).required).toBe(false);
+    expect(Select({ name: "", label: "", required: false }).required).toBe(
+      false
+    );
+    expect(Select({ name: "", label: "", required: true }).required).toBe(true);
   });
 });
 
