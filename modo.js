@@ -129,13 +129,30 @@ function Form({ path, children, successTarget = null }) {
   };
 }
 
-function Checkbox({ name, label, checked = false }) {
+function Checkbox({
+  name,
+  label,
+  checked = false,
+  progressiveDisclosureItems = {}
+}) {
   return {
     elementType: "input",
     inputType: "checkbox",
     name,
     label,
-    checked
+    checked,
+    progressiveDisclosureItems
+  };
+}
+
+function Select({ name, label, value = null, required = false }) {
+  return {
+    elementType: "input",
+    inputType: "select",
+    name,
+    label,
+    value,
+    required
   };
 }
 
@@ -161,6 +178,7 @@ module.exports = {
   HTML,
   Form,
   Checkbox,
+  Select,
   FormButton,
   AuthorityLink,
   ExternalLink,
