@@ -129,13 +129,19 @@ function Form({ path, children, successTarget = null }) {
   };
 }
 
-function Checkbox({ name, label, checked = false }) {
+function Checkbox({
+  name,
+  label,
+  checked = false,
+  progressiveDisclosureItems = {}
+}) {
   return {
     elementType: "input",
     inputType: "checkbox",
     name,
     label,
-    checked
+    checked,
+    progressiveDisclosureItems
   };
 }
 
