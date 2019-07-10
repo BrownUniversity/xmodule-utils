@@ -323,6 +323,29 @@ describe("Checkbox", () => {
     );
     expect(Checkbox({ name: "", label: "", checked: true }).checked).toBe(true);
   });
+
+  it("includes provided progressiveDisclosureItems (with empty default)", () => {
+    expect(
+      Checkbox({ name: "", label: "" }).progressiveDisclosureItems
+    ).toStrictEqual({});
+    expect(
+      Checkbox({ name: "", label: "", progressiveDisclosureItems: {} })
+        .progressiveDisclosureItems
+    ).toStrictEqual({});
+    expect(
+      Checkbox({
+        name: "",
+        label: "",
+        progressiveDisclosureItems: {
+          unchecked: [Heading({ text: "Test heading" })]
+        }
+      }).progressiveDisclosureItems
+    ).toEqual(
+      expect.objectContaining({
+        unchecked: [{ elementType: "heading", title: "Test heading" }]
+      })
+    );
+  });
 });
 
 describe("Select", () => {
