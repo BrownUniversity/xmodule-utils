@@ -363,6 +363,28 @@ describe("Select", () => {
     );
   });
 
+  it("includes provided option labels", () => {
+    expect(
+      Select({
+        name: "",
+        label: "",
+        optionLabels: ["Label 1", "Label 2"],
+        optionValues: []
+      }).optionLabels
+    ).toEqual(["Label 1", "Label 2"]);
+  });
+
+  it("includes provided option values", () => {
+    expect(
+      Select({
+        name: "",
+        label: "",
+        optionValues: ["Value 1", "Value 2"],
+        optionLabels: []
+      }).optionValues
+    ).toEqual(["Value 1", "Value 2"]);
+  });
+
   it("includes provided value (with null as default)", () => {
     expect(Select({ name: "", label: "" }).value).toBe(null);
     expect(Select({ name: "", label: "", value: null }).value).toBe(null);

@@ -145,13 +145,22 @@ function Checkbox({
   };
 }
 
-function Select({ name, label, value = null, required = false }) {
+function Select({
+  name,
+  label,
+  optionLabels,
+  optionValues,
+  value = null,
+  required = false
+}) {
   return {
     elementType: "input",
     inputType: "select",
     name,
     label,
     value,
+    optionLabels,
+    optionValues,
     required
   };
 }
