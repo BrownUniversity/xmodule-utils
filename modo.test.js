@@ -15,7 +15,8 @@ const {
   FormButton,
   AuthorityLink,
   ExternalLink,
-  ModuleLink
+  ModuleLink,
+  RelativeLink
 } = require("./modo");
 
 describe("Root", () => {
@@ -453,6 +454,14 @@ describe("ModuleLink", () => {
   it("includes provided filter string", () => {
     expect(ModuleLink(module).module.queryParameters.filter).toBe(
       "filter string"
+    );
+  });
+});
+
+describe("RelativeLink", () => {
+  it("includes provided path", () => {
+    expect(RelativeLink({ path: "/../relative-path" }).relativePath).toBe(
+      "/../relative-path"
     );
   });
 });

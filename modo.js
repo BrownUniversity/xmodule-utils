@@ -65,6 +65,12 @@ function ModuleLink({ id, page, queryParameters }) {
   };
 }
 
+function RelativeLink({ path }) {
+  return {
+    relativePath: path
+  };
+}
+
 function LinkButton({ title, link }) {
   return {
     elementType: "linkButton",
@@ -191,5 +197,6 @@ module.exports = {
   FormButton,
   AuthorityLink,
   ExternalLink,
-  ModuleLink
+  ModuleLink,
+  RelativeLink
 };
