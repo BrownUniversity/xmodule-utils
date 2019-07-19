@@ -73,8 +73,10 @@ function RelativeLink({ path }) {
 
 function XModuleLink({ id, path }) {
   return {
-    id,
-    relativePath: path
+    xmodule: {
+      id,
+      relativePath: path
+    }
   };
 }
 

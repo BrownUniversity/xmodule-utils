@@ -472,12 +472,14 @@ describe("RelativeLink", () => {
 
 describe("XModuleLink", () => {
   it("includes provided id", () => {
-    expect(XModuleLink({ id: "module_id", path: "" }).id).toBe("module_id");
+    expect(XModuleLink({ id: "module_id", path: "" }).xmodule.id).toBe(
+      "module_id"
+    );
   });
 
   it("includes provided path", () => {
     expect(
-      XModuleLink({ id: "", path: "/../relative-path" }).relativePath
+      XModuleLink({ id: "", path: "/../relative-path" }).xmodule.relativePath
     ).toBe("/../relative-path");
   });
 });
