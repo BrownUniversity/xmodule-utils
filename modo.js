@@ -71,6 +71,13 @@ function RelativeLink({ path }) {
   };
 }
 
+function XModuleLink({ id, path }) {
+  return {
+    id,
+    relativePath: path
+  };
+}
+
 function LinkButton({ title, link }) {
   return {
     elementType: "linkButton",
@@ -198,5 +205,6 @@ module.exports = {
   AuthorityLink,
   ExternalLink,
   ModuleLink,
-  RelativeLink
+  RelativeLink,
+  XModuleLink
 };
