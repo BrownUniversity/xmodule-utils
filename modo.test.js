@@ -16,7 +16,8 @@ const {
   AuthorityLink,
   ExternalLink,
   ModuleLink,
-  RelativeLink
+  RelativeLink,
+  XModuleLink
 } = require("./modo");
 
 describe("Root", () => {
@@ -445,12 +446,15 @@ describe("ModuleLink", () => {
   it("includes provided id", () => {
     expect(ModuleLink(module).module.id).toBe("link id");
   });
+
   it("includes provided page name", () => {
     expect(ModuleLink(module).module.page).toBe("page name");
   });
+
   it("includes provided search name", () => {
     expect(ModuleLink(module).module.queryParameters.search).toBe("Search");
   });
+
   it("includes provided filter string", () => {
     expect(ModuleLink(module).module.queryParameters.filter).toBe(
       "filter string"
@@ -463,5 +467,19 @@ describe("RelativeLink", () => {
     expect(RelativeLink({ path: "/../relative-path" }).relativePath).toBe(
       "/../relative-path"
     );
+  });
+});
+
+describe("XModuleLink", () => {
+  it("includes provided id", () => {
+    expect(XModuleLink({ id: "module_id", path: "" }).xmodule.id).toBe(
+      "module_id"
+    );
+  });
+
+  it("includes provided path", () => {
+    expect(
+      XModuleLink({ id: "", path: "/../relative-path" }).xmodule.relativePath
+    ).toBe("/../relative-path");
   });
 });
