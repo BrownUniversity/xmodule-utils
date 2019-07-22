@@ -37,6 +37,16 @@ function Table({ heading, headers, rows }) {
   };
 }
 
+function Collapsible({ title, content, collapsed = true }) {
+  return {
+    elementType: "collapsible",
+    title,
+    collapsed,
+    disclosureIcon: "plusminus",
+    content
+  };
+}
+
 function ButtonContainer({ buttons }) {
   return {
     elementType: "buttonContainer",
@@ -194,6 +204,7 @@ module.exports = {
   Container,
   Heading,
   Table,
+  Collapsible,
   LinkButton,
   ButtonContainer,
   Detail,
