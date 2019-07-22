@@ -3,6 +3,7 @@ const {
   Container,
   Heading,
   Table,
+  Collapsible,
   ButtonContainer,
   LinkButton,
   Detail,
@@ -127,6 +128,39 @@ describe("Table", () => {
       { cells: [{ title: "Cell 1" }, { title: "Cell 2" }] },
       { cells: [{ title: "Cell 3" }, { title: "" }] }
     ]);
+  });
+});
+
+describe("Collapsible", () => {
+  it("includes collapsible element type", () => {
+    expect(
+      Collapsible({ title: "", content: [], collapsed: true }).elementType
+    ).toBe("collapsible");
+  });
+
+  it("defaults to collapsed state", () => {
+    expect(Collapsible({ title: "", content: [] }).collapsed).toBe(true);
+  });
+
+  it("includes provided title", () => {
+    expect(
+      Collapsible({ title: "Element title", content: [], collapsed: true })
+        .title
+    ).toBe("Element title");
+  });
+
+  it("includes provided content", () => {
+    expect(
+      Collapsible({
+        title: "",
+        content: ["child 1", "child 2"],
+        collapsed: true
+      })
+    ).toEqual(
+      expect.objectContaining({
+        content: ["child 1", "child 2"]
+      })
+    );
   });
 });
 
