@@ -1,6 +1,6 @@
 {
   "name": "brown-university-xmodule-utils",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "",
   "main": "modo.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^6.0.0",
+    "eslint": "^6.1.0",
     "eslint-config-brown": "git+https://bitbucket.brown.edu/scm/node/eslint-config-brown.git#semver:^0.14",
     "jest": "^24.8.0",
     "prettier": "^1.18.2"
