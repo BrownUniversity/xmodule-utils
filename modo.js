@@ -58,10 +58,10 @@ function AuthorityLink() {
   return { authority: { type: "default" } };
 }
 
-function ExternalLink({ external }) {
+function ExternalLink({ external, accessoryIcon = "drilldown" }) {
   return {
     external,
-    accessoryIcon: "drilldown"
+    accessoryIcon
   };
 }
 
@@ -99,10 +99,11 @@ function LinkButton({ title, link }) {
   };
 }
 
-function Detail({ subtitle, children = [] }) {
+function Detail({ subtitle, body = null, children = [] }) {
   return {
     elementType: "detail",
     subtitle,
+    body,
     content: children
   };
 }
