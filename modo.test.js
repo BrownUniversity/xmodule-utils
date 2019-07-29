@@ -238,6 +238,10 @@ describe("Detail", () => {
     );
   });
 
+  it("includes provided body", () => {
+    expect(Detail({ body: "Test body" }).body).toBe("Test body");
+  });
+
   it("includes provided children in content array", () => {
     expect(Detail({ children: ["child 1", "child 2"] })).toEqual(
       expect.objectContaining({
@@ -467,6 +471,16 @@ describe("ExternalLink", () => {
     expect(ExternalLink({ external: "https://brown.edu" }).external).toBe(
       "https://brown.edu"
     );
+  });
+
+  it("includes provided accessoryIcon (with drilldown default)", () => {
+    expect(ExternalLink({ external: "https://brown.edu" }).accessoryIcon).toBe(
+      "drilldown"
+    );
+    expect(
+      ExternalLink({ external: "https://brown.edu", accessoryIcon: "external" })
+        .accessoryIcon
+    ).toBe("external");
   });
 });
 
