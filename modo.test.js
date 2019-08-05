@@ -274,6 +274,10 @@ describe("ListItem", () => {
     expect(ListItem({ label: "Test Label" }).label).toBe("Test Label");
   });
 
+  it("includes provided title", () => {
+    expect(ListItem({ title: "Test title" }).title).toBe("Test title");
+  });
+
   it("includes provided description", () => {
     expect(ListItem({ description: "Test description" }).description).toBe(
       "Test description"

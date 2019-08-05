@@ -1,6 +1,6 @@
 {
   "name": "brown-university-xmodule-utils",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "",
   "main": "modo.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "format-check": "prettier -l *.js .eslintrc package.json",
     "format": "prettier --write *.js .eslintrc package.json",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "validate": "npm run lint && npm run format-check && npm run test"
   },
   "author": "",
   "license": "ISC",
