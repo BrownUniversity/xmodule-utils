@@ -117,9 +117,10 @@ function List({ heading, items = [], grouped = true }) {
   };
 }
 
-function ListItem({ label, description, url }) {
+function ListItem({ label, title, description, url }) {
   return {
     label,
+    title,
     description,
     link: {
       external: url
