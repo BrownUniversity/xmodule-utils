@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const { logger } = require("../src/logger");
+const logger = require("../src/logger");
 
 describe("logger", () => {
   beforeEach(() => {
