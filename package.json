@@ -2,11 +2,11 @@
   "name": "brown-university-xmodule-utils",
   "version": "0.14.0",
   "description": "",
-  "main": "modo.js",
+  "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "format-check": "prettier -l *.js .eslintrc package.json",
-    "format": "prettier --write *.js .eslintrc package.json",
+    "format-check": "prettier -l *.js src/**/*.js test/**/*.js .eslintrc package.json",
+    "format": "prettier --write *.js src/**/*.js test/**/*.js .eslintrc package.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "validate": "npm run lint && npm run format-check && npm run test"
