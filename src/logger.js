@@ -13,7 +13,7 @@ module.exports = {
     try {
       await next();
     } catch (e) {
-      // Log JWT errors but don't return them client
+      // Log JWT errors but don't return them to client
       if (e.status === 401 && e.originalError) {
         ctx.logError(e.message);
         ctx.throw(401, "Authentication Error");
