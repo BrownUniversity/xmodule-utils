@@ -19,7 +19,7 @@ const {
   ModuleLink,
   RelativeLink,
   XModuleLink
-} = require("./modo");
+} = require("../src/modo");
 
 describe("Root", () => {
   it("includes default version (1) in metadata", () => {

@@ -1,4 +1,4 @@
-.PHONY: check-all
+.PHONY: check-all lint format-check test
 
 check-all: lint format-check test ;
 
