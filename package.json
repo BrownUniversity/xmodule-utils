@@ -1,6 +1,6 @@
 {
   "name": "brown-university-xmodule-utils",
-  "version": "0.15.3",
+  "version": "0.16.0",
   "description": "",
   "main": "index.js",
   "scripts": {
