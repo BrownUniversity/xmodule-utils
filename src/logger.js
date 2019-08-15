@@ -1,14 +1,16 @@
-module.exports = async function logger(ctx, next) {
-  ctx.log = function log(...args) {
+const logger = {
+  log(...args) {
     // eslint-disable-next-line no-console
     console.log(...args);
-  };
+  },
 
-  ctx.logError = function log(...args) {
+  error(...args) {
     // eslint-disable-next-line no-console
     console.error(...args);
-  };
+  }
+};
 
+async function xmoduleLogger(ctx, next) {
   try {
     await next();
   } catch (e) {
@@ -18,10 +20,15 @@ module.exports = async function logger(ctx, next) {
       (e.originalError ||
         (e.message !== "Authentication Error" && e.message !== "Unauthorized"));
     if (isJWTError) {
-      ctx.logError(e.message);
+      logger.error(e.message);
       ctx.throw(401, "Authentication Error");
     } else {
       throw e;
     }
   }
+}
+
+module.exports = {
+  logger,
+  xmoduleLogger
 };
