@@ -17,6 +17,7 @@
     "eslint": "^6.1.0",
     "eslint-config-brown": "git+https://bitbucket.brown.edu/scm/node/eslint-config-brown.git#semver:^0.14",
     "jest": "^24.8.0",
+    "moment": "^2.24.0",
     "prettier": "^1.18.2"
   }
 }
