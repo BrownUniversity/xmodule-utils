@@ -8,8 +8,8 @@ Utility functions for generate Modo X-Module element JSON.
 
 ```sh
 // npm
-npm i git+https://bitbucket.brown.edu/scm/modox/xmodule-utils.git#semver:^0.16
+npm i BrownUniversity/xmodule-utils#semver:^0.16
 
 // yarn
-yarn add git+https://bitbucket.brown.edu/scm/modox/xmodule-utils.git#semver:^0.16
+yarn add BrownUniversity/xmodule-utils#semver:^0.16
 ```
