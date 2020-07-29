@@ -5,8 +5,6 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "format-check": "prettier -l *.js src/**/*.js test/**/*.js .eslintrc package.json",
-    "format": "prettier --write *.js src/**/*.js test/**/*.js .eslintrc package.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "validate": "npm run lint && npm run format-check && npm run test"
@@ -15,7 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^6.1.0",
-    "eslint-config-brown": "git+https://bitbucket.brown.edu/scm/node/eslint-config-brown.git#semver:^0.14",
+    "eslint-config-brown": "github:BrownUniversity/eslint-config-brown#semver:^0.16",
     "jest": "^24.8.0",
     "moment": "^2.24.0",
     "prettier": "^1.18.2"
