@@ -1,12 +1,9 @@
-.PHONY: check-all lint format-check test
+.PHONY: check-all lint test
 
-check-all: lint format-check test ;
+check-all: lint test ;
 
 lint:
 	npm run lint
-
-format-check:
-	npm run format-check
 
 test:
 	npm run test
